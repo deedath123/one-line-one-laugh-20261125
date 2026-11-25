@@ -14,6 +14,9 @@ def main() -> None:
     output_dir = Path(os.environ.get("OUTPUT_DIR", "/output"))
     output_dir.mkdir(parents=True, exist_ok=True)
     entry_path = output_dir / "entry.txt"
+    # Contest gate: the entry must be one line of 1-140 characters.
+    if not 1 <= len(ENTRY) <= 140:
+        raise ValueError(f"entry must be 1-140 characters, got {len(ENTRY)}")
     # No trailing newline: the entry is exactly the line.
     entry_path.write_text(ENTRY, encoding="utf-8", newline="")
 
